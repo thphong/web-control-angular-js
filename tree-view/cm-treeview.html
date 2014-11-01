@@ -18,18 +18,16 @@
                     <i class="fa fa-minus-circle"></i>
                     <i style="display:none;" class="fa fa-plus-circle"></i>
                 </a>
-                <a href="#" ng-click="clickNode($event, data)"> 
+                <a href="#" ng-click="clickOnNode($event, data)"> 
                     {{data.OrgName}}
                 </a>
                 <ul>
                     <li ng-repeat="data in data.Children" ng-include="'tree_item_renderer.html'"></li>
                 </ul>
             </script>
-
             <ul class="tree" ng-init="initTree()">
                 <li ng-repeat="data in tree" ng-include="'tree_item_renderer.html'"></li>
             </ul>
-
         </div>
     </div>
 </body>
