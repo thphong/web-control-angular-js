@@ -1,7 +1,8 @@
 var mdlCommon = angular.module('mdlCommon', []);
 mdlCommon.controller('ctlTreeView', function ($scope, $controller) {
 
-    $scope.listOrg = [{ Id: 1, OrgName: "Root", ParentId: 0 },
+    $scope.getListNodes = function () {
+        return       [{ Id: 1, OrgName: "Root", ParentId: 0 },
                       { Id: 2, OrgName: "Node 1", ParentId: 1 },
                       { Id: 3, OrgName: "Node 2", ParentId: 1 },
                       { Id: 4, OrgName: "Node 3", ParentId: 1 },
@@ -16,24 +17,50 @@ mdlCommon.controller('ctlTreeView', function ($scope, $controller) {
                       { Id: 13, OrgName: "Node 1-1-1", ParentId: 5 },
                       { Id: 14, OrgName: "Node 1-1-2", ParentId: 5 },
                       { Id: 15, OrgName: "Node 2-3-1", ParentId: 10 }];
-                      
+    }
+
+    $scope.clickNode = function (node) {
+        alert(node);
+    }
+
+    $scope.addNode = function (node) {
+        this.listNodes.push(node);
+        this.buildTree();
+    }
+
+    $scope.deleteNode = function (node) {
+        for (var i = this.listNodes.length - 1; i >= 0; i--) {
+            if (this.listNodes[i] == node) {
+                this.listNodes.splice(i, 1);
+                break;
+            }
+        }
+        this.buildTree();
+    }
+
+    //------------------------------------------------------
     $scope.tree = [];
+    $scope.listNodes = [];
     $scope.initTree = function () {
+        this.listNodes = this.getListNodes();
+        this.buildTree();
+    }
 
-        var listNodes = this.listOrg;
-
+    $scope.buildTree = function () {
+        var listNodes = this.listNodes;
         for (var i = 0; i < listNodes.length; i++) {
             listNodes[i].Children = [];
-            for (var j = 0; j < listNodes.length; j++)
+            for (var j = 0; j < listNodes.length; j++) {
                 if (i != j && listNodes[i].Id == listNodes[j].ParentId) {
                     listNodes[i].Children.push(listNodes[j]);
                 }
+            }
         }
 
         this.tree = [];
         for (var i = 0; i < listNodes.length; i++) {
             if (listNodes[i].ParentId == 0) {
-                this.tree.push(this.listOrg[i]);
+                this.tree.push(listNodes[i]);
             }
         }
     }
@@ -47,8 +74,9 @@ mdlCommon.controller('ctlTreeView', function ($scope, $controller) {
         return false;
     }
 
-    $scope.clickNode = function ($event, node) {
+    $scope.clickOnNode = function ($event, node) {
         $(".tree a.current-node").removeClass("current-node");
         $($event.target).addClass("current-node");
+        this.clickNode(node);
     }
 });
