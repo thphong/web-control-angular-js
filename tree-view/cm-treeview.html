@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tree View</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="js/cm-treeview.js"></script>
+    <link rel="stylesheet" href="css/cm-treeview.css">
+</head>
+<body>
+    <div class="container" style="position: relative" ng-app="mdlCommon">
+        <div ng-controller="ctlTreeView">
+            <script type="text/ng-template" id="tree_item_renderer.html">
+                <a class="toogle" href="#" ng-if="data.Children.length > 0" ng-click="toggle($event)">
+                    <i class="fa fa-minus-circle"></i>
+                    <i style="display:none;" class="fa fa-plus-circle"></i>
+                </a>
+                <a href="#" ng-click="clickNode($event, data)"> 
+                    {{data.OrgName}}
+                </a>
+                <ul>
+                    <li ng-repeat="data in data.Children" ng-include="'tree_item_renderer.html'"></li>
+                </ul>
+            </script>
+
+            <ul class="tree" ng-init="initTree()">
+                <li ng-repeat="data in tree" ng-include="'tree_item_renderer.html'"></li>
+            </ul>
+
+        </div>
+    </div>
+</body>
+</html>
+
