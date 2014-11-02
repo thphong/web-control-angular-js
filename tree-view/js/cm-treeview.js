@@ -1,6 +1,9 @@
 var mdlCommon = angular.module('mdlCommon', []);
 mdlCommon.controller('ctlTreeView', function ($scope, $controller) {
 
+    /*
+    Get list nodes when page load
+    */
     $scope.getListNodes = function () {
         return       [{ Id: 1, OrgName: "Root", ParentId: 0 },
                       { Id: 2, OrgName: "Node 1", ParentId: 1 },
@@ -19,15 +22,24 @@ mdlCommon.controller('ctlTreeView', function ($scope, $controller) {
                       { Id: 15, OrgName: "Node 2-3-1", ParentId: 10 }];
     }
 
+    /*
+    When user click on the node, this function will be fired
+    */
     $scope.clickNode = function (node) {
-        alert(node);
+        //alert(node);
     }
 
+    /*
+    Add a node into the tree, just add one element into the this.listNodes, and rebuild the tree
+    */
     $scope.addNode = function (node) {
         this.listNodes.push(node);
         this.buildTree();
     }
 
+    /*
+    Delete a node from the tree, just remove one element from the this.listNodes, and rebuild the tree
+    */
     $scope.deleteNode = function (node) {
         for (var i = this.listNodes.length - 1; i >= 0; i--) {
             if (this.listNodes[i] == node) {
