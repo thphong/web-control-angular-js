@@ -2,8 +2,6 @@
 <html>
 <head>
     <title>Tree View</title>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
@@ -11,7 +9,7 @@
     <link rel="stylesheet" href="css/cm-treeview.css">
 </head>
 <body>
-    <div class="container" style="position: relative" ng-app="mdlCommon">
+    <div ng-app="mdlCommon">
         <div ng-controller="ctlTreeView">
             <script type="text/ng-template" id="tree_item_renderer.html">
                 <a class="toogle" href="#" ng-if="data.Children.length > 0" ng-click="toggle($event)">
