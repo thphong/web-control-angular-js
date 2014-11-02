@@ -54,6 +54,7 @@
     font-weight: normal !important; 
     color: #428BCA !important;
     text-decoration:none !important;
+    font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .tree a:hover {
