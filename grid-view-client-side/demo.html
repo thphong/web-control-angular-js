@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HR System</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="js/grid-view-client-side.js"></script>
+    <script src="js/demo.js"></script>
+</head>
+<body ng-app="mdlCommon">
+    <div class="container" ng-controller="DemoController">
+
+        <div class="row col-sm-12" style="padding: 5px 0px">
+            <div class="col-sm-6 col-md-3 pull-left">
+                <grid-page-size></grid-page-size>
+            </div>
+            <div class="col-sm-6 col-md-3 pull-right">
+                <grid-filter></grid-filter>
+            </div>
+        </div>
+        <div class="row col-md-12">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th grid-sort-by="EmployeeNo">Employee No</th>
+                        <th grid-sort-by="EmployeeName">Employee Name</th>
+                        <th grid-sort-by="OrgName">Org Name</th>
+                        <th grid-sort-by="DirectManager">Direct Manager</th>
+                        <th grid-sort-by="IndirectManager">Indirect Manager</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="record in DataSet.Data">
+                        <td>{{record.RowId}}</td>
+                        <td>{{record.EmployeeNo}}</td>
+                        <td>{{record.EmployeeName}}</td>
+                        <td>{{record.OrgName}}</td>
+                        <td>{{record.DirectManager}}</td>
+                        <td>{{record.IndirectManager}}</td>
+                    </tr>
+                    <tr ng-if="!HasRecord()">
+                        <td colspan="6" align="center">No item found!</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row col-sm-12">
+            <grid-paging></grid-paging>
+        </div>
+    </div>
+</body>
+</html>
+
